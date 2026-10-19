@@ -1,0 +1,10 @@
+--- yaml_c.serialize -- serialize a value into a YAML string.
+--- yaml_c.deserialize -- deserialize a YAML string into a value.
+cap "yaml_c.serialize"
+cap "yaml_c.deserialize"
+op "yaml_c.serialize" : Value -> String
+  guarantee: True
+op "yaml_c.deserialize" : String -> Value
+  guarantee: True
+handle "yaml_c.serialize" with rust_yaml_c_serialize
+handle "yaml_c.deserialize" with rust_yaml_c_deserialize
