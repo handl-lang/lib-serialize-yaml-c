@@ -3,8 +3,10 @@ name = "handl-plugin-lib-serialize-yaml-c"
 version = "0.1.0"
 edition = "2024"
 description = "serialize-yaml-c: native YAML serializer backend for lib-serialize (ADR-0128 split)."
-license = "MIT OR Apache-2.0"
+license = "MIT"
 repository = "https://github.com/handl-lang/lib-serialize-yaml-c"
+homepage = "https://github.com/handl-lang/lib-serialize-yaml-c"
+readme = "README.md"
 
 [lib]
 name = "handl_plugin_lib_serialize_yaml_c"
