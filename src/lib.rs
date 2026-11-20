@@ -10,8 +10,7 @@
 use std::sync::Arc;
 
 use handl_lib_serialize::{Decoder, Encoder, SerializeError, Serializer};
-use handl_platform::{EvalContext, EvalError, Function};
-use handl_plugin_lib_handl::OpRegistry;
+use handl_ops::{Op, OpContext, OpError, OpRegistry};
 use serde_json::Value;
 use serde_yaml::Value as YamlValue;
 
@@ -89,17 +88,17 @@ impl Decoder<str, YamlValue> for YamlDecoder {
 #[derive(Debug, Clone, Copy)]
 pub struct YamlCSerialize;
 
-impl Function for YamlCSerialize {
-    fn call(&self, args: &[Value], _ctx: &mut EvalContext) -> Result<Value, EvalError> {
+impl Op for YamlCSerialize {
+    fn call(&self, args: &[Value], _ctx: &mut dyn OpContext) -> Result<Value, OpError> {
         if args.len() != 1 {
-            return Err(EvalError::TypeMismatch(format!(
+            return Err(OpError::TypeMismatch(format!(
                 "expected {} args, got {}",
                 1,
                 args.len()
             )));
         }
         let s = serde_yaml::to_string(&args[0])
-            .map_err(|e| EvalError::Other(format!("yaml_c.serialize error: {e}")))?;
+            .map_err(|e| OpError::Other(format!("yaml_c.serialize error: {e}")))?;
         Ok(Value::String(s))
     }
 }
@@ -112,10 +111,10 @@ impl Function for YamlCSerialize {
 #[derive(Debug, Clone, Copy)]
 pub struct YamlCDeserialize;
 
-impl Function for YamlCDeserialize {
-    fn call(&self, args: &[Value], _ctx: &mut EvalContext) -> Result<Value, EvalError> {
+impl Op for YamlCDeserialize {
+    fn call(&self, args: &[Value], _ctx: &mut dyn OpContext) -> Result<Value, OpError> {
         if args.len() != 1 {
-            return Err(EvalError::TypeMismatch(format!(
+            return Err(OpError::TypeMismatch(format!(
                 "expected {} args, got {}",
                 1,
                 args.len()
@@ -123,9 +122,9 @@ impl Function for YamlCDeserialize {
         }
         let s = args[0]
             .as_str()
-            .ok_or_else(|| EvalError::Other("yaml_c.deserialize expects a string".to_string()))?;
+            .ok_or_else(|| OpError::Other("yaml_c.deserialize expects a string".to_string()))?;
         let value: Value = serde_yaml::from_str(s)
-            .map_err(|e| EvalError::Other(format!("yaml_c.deserialize error: {e}")))?;
+            .map_err(|e| OpError::Other(format!("yaml_c.deserialize error: {e}")))?;
         Ok(value)
     }
 }

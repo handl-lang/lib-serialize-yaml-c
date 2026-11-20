@@ -11,21 +11,13 @@ name = "handl_plugin_lib_serialize_yaml_c"
 path = "src/lib.rs"
 
 [dependencies]
-handl-platform = { git = "https://github.com/handl-lang/host", branch = "main" }
-handl-plugin-lib-handl = { git = "https://github.com/handl-lang/host", branch = "main" }
+handl-ops = { git = "https://github.com/handl-lang/kernel", branch = "main" }
 handl-lib-serialize = { git = "https://github.com/handl-lang/lib-serialize", branch = "main" }
 serde_json = "1"
 serde_yaml = "0.9"
 
-[patch."https://github.com/handl-lang/host"]
-handl-platform = { path = "../host/crates/platform" }
-handl-plugin-lib-handl = { path = "../host/crates/plugin-lib-handl" }
-# These are `path` deps inside `../host` (so the local copies always win for
-# the patched crates above) but also arrive as git deps transitively through
-# `hnl-engine-exec-bytecode` — patch them to the same checkouts or the graph
-# carries two `handl_runtime`s (`CompileEngine` trait mismatch).
-handl-plugin-module = { path = "../host/crates/plugin-module" }
-handl-runtime = { path = "../host/crates/handl-runtime" }
+[patch."https://github.com/handl-lang/kernel"]
+handl-ops = { path = "../kernel/crates/handl-ops" }
 
 [patch."https://github.com/handl-lang/lib-serialize"]
 handl-lib-serialize = { path = "../lib-serialize" }
