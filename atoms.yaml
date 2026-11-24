@@ -1,0 +1,15 @@
+# lib-serialize-yaml-c atom spec (P-013/T-151) — YAML (C backend) ops — native impls in host `plugin-lib-stdlib` ops/yaml.rs; impl keys are the `handle ... with` hints (rust_ prefix dropped).
+# `sig` = handl signature (~> canonical), `impl` = key for the
+# module's impl table, `total` replaces `guarantee: True` decl
+# clauses. Generated from the cap/op/handle triples in
+# src/index.hnl.
+module: yaml_c
+atoms:
+  - name: yaml_c.serialize
+    sig: "Value ~> String"
+    impl: yaml_c_serialize
+    total: true
+  - name: yaml_c.deserialize
+    sig: "String ~> Value"
+    impl: yaml_c_deserialize
+    total: true
