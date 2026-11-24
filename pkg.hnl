@@ -1,0 +1,14 @@
+-- lib-serialize-yaml-c: the `serialize-yaml-c` module — native YAML
+-- serializer backend for `lib-serialize` (the `serde_yaml` crate over
+-- the serialize traits). Transitional layout: the interface is
+-- `src/index.hnl` (`yaml_c.*` op declarations); the impl is the
+-- `handl-plugin-lib-serialize-yaml-c` crate.
+{
+  deps: { serialize: "branch:main" },
+  modules: ["serialize-yaml-c"],
+  name: "serialize-yaml-c",
+  description: "Native YAML serializer backend for the serialize contract — yaml_c.serialize/deserialize via serde_yaml.",
+  license: "MIT",
+  keywords: ["yaml", "serialize", "backend", "rust", "handl"],
+  homepage: "https://github.com/handl-lang/lib-serialize-yaml-c",
+}
