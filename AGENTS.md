@@ -11,7 +11,7 @@ traits).
 | `src/lib.rs` | the Rust plugin crate (`handl-plugin-lib-serialize-yaml-c`) |
 | `src/index.hnl` | the interface — `yaml_c.*` op declarations |
 | `atoms.yaml`, `Cargo.toml`, `xtask/` | atoms / manifest / `cargo xtask` gate |
-| `pkg.hnl`, `scripts/hnl-gate.sh`, `ci.sh` | manifest (dep `serialize`) / hnl gate / bupha entry |
+| `pkg.hnl`, `scripts/hnl-gate.sh`, `workflows/gate.yaml` | manifest (dep `serialize`) / hnl gate / bupha entry |
 
 ## Contract
 
