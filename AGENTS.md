@@ -1,3 +1,35 @@
+# lib-serialize-yaml-c
+
+`handl-plugin-lib-serialize-yaml-c` — native YAML serializer backend
+for `lib-serialize` (the `serde_yaml` crate over the serialize
+traits).
+
+## Layout
+
+| path | role |
+| --- | --- |
+| `src/lib.rs` | the Rust plugin crate (`handl-plugin-lib-serialize-yaml-c`) |
+| `src/index.hnl` | the interface — `yaml_c.*` op declarations |
+| `atoms.yaml`, `Cargo.toml`, `xtask/` | atoms / manifest / `cargo xtask` gate |
+| `pkg.hnl`, `scripts/hnl-gate.sh`, `ci.sh` | manifest (dep `serialize`) / hnl gate / bupha entry |
+
+## Contract
+
+- Transitional layout: interface is `src/index.hnl`; impl is the
+  Rust crate — `yaml_c.serialize`/`deserialize` over `serde_yaml`
+  via the `lib-serialize` traits.
+- Deps resolve from git — a plain clone test-runs as-is.
+
+## Verification
+
+```bash
+cargo xtask gate        # fmt --check → clippy -D warnings → test → doc
+```
+
+## License
+
+MIT.
+
 <!-- myco:agent-awareness -->
 
 ## Agent awareness
