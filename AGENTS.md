@@ -9,15 +9,16 @@ traits).
 | path | role |
 | --- | --- |
 | `src/lib.rs` | the Rust plugin crate (`handl-plugin-lib-serialize-yaml-c`) |
-| `src/index.hnl` | the interface — `yaml_c.*` op declarations |
+| `src/index.hnl` | the interface — documentation surface; atom spec in `atoms.yaml` (P-013/T-151) |
 | `atoms.yaml`, `Cargo.toml`, `xtask/` | atoms / manifest / `cargo xtask` gate |
 | `pkg.hnl`, `scripts/hnl-gate.sh`, `workflows/gate.yaml` | manifest (dep `serialize`) / hnl gate / bupha entry |
 
 ## Contract
 
-- Transitional layout: interface is `src/index.hnl`; impl is the
+- Spec-driven layout: `atoms.yaml` is the spec; the impl is the
   Rust crate — `yaml_c.serialize`/`deserialize` over `serde_yaml`
-  via the `lib-serialize` traits.
+  via the `lib-serialize` traits — adapted by the host's
+  `yaml_c_impls()` table (`plugin-lib-stdlib` `ops/kernel_impls.rs`).
 - Deps resolve from git — a plain clone test-runs as-is.
 
 ## Verification
