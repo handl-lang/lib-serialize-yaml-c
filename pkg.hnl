@@ -3,6 +3,7 @@
 -- the serialize traits). Transitional layout: the interface is
 -- `src/index.hnl` (`yaml_c.*` op declarations); the impl is the
 -- `handl-plugin-lib-serialize-yaml-c` crate.
+-- test_coverage "none": doc-only op-decl surface — impl is the Rust serialize-yaml-c crate.
 {
   deps: { serialize: "branch:main" },
   modules: ["serialize-yaml-c"],
@@ -11,4 +12,5 @@
   license: "MIT",
   keywords: ["yaml", "serialize", "backend", "rust", "handl"],
   homepage: "https://github.com/handl-lang/lib-serialize-yaml-c",
+  test_coverage: "none",
 }
